@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BRO 내전 기록 - 팀 짜기</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <nav class="main-nav">
+        <a href="index.html" class="nav-link">리더보드</a>
+        <a href="team.html" class="nav-link active">팀 짜기</a>
+        <a href="banpick.html" class="nav-link">밴픽</a>
+    </nav>
+
+    <div class="container team-container">
+        <h1>TEAM DRAFTER</h1>
+
+        <div id="team-draft-container">
+
+            <div id="step-1-players" class="draft-step active">
+                <h2>1. 참가 인원 선택 (10명)</h2>
+                <div class="selection-layout">
+                    <div class="available-players">
+                        <input type="text" id="player-search" placeholder="이름 또는 초성 검색...">
+                        <div id="player-selection-pool" class="player-pool scrollable">
+                            <div class="loading">참가자 목록을 불러오는 중...</div>
+                        </div>
+                    </div>
+                    <div class="selected-players-display">
+                        <h3>선택된 참가자 (<span id="player-count">0</span>/10)</h3>
+                        <div id="selected-players-list" class="selected-list scrollable"></div>
+                    </div>
+                </div>
+                <div class="step-footer">
+                    <button id="btn-to-step-2" class="cta-button" disabled>팀장 지정하기</button>
+                </div>
+            </div>
+
+            <div id="step-2-captains" class="draft-step">
+                <h2>2. 팀장 2명 지정</h2>
+                <p>참가자 10명 중 팀장 역할을 할 2명을 선택하세요.</p>
+                <div id="captain-selection-list" class="player-pool captain-select"></div>
+                 <div class="step-footer">
+                    <span id="captain-count">0 / 2 명</span>
+                    <button id="btn-to-step-3" class="cta-button" disabled>드래프트 시작</button>
+                </div>
+            </div>
+
+            <div id="step-3-draft" class="draft-step">
+                
+                <div id="light-path-container" class="light-path-container" style="display: none;">
+                    <h3 id="light-path-title"></h3>
+                    <div id="light-path-game">
+                        <svg class="light-path-svg" viewbox="0 0 300 150">
+                            <defs>
+                                <path id="pathA" d="M 150 140 C 100 100, 100 50, 50 10" stroke="none" fill="none" />
+                                <path id="pathB" d="M 150 140 C 200 100, 200 50, 250 10" stroke="none" fill="none" />
+                            </defs>
+                            <path d="M 150 140 C 100 100, 100 50, 50 10" stroke="#2a3a59" stroke-width="4" fill="none" />
+                            <path d="M 150 140 C 200 100, 200 50, 250 10" stroke="#2a3a59" stroke-width="4" fill="none" />
+                            <circle id="light-orb" cx="150" cy="140" r="8" fill="#f0e6d2" filter="url(#glow)">
+                                <animateMotion dur="3s" begin="indefinite" fill="freeze" calcMode="spline" keyTimes="0; 1" keySplines="0.4 0 0.2 1">
+                                    <mpath xlink:href="#pathA" />
+                                </animateMotion>
+                            </circle>
+                            <filter id="glow">
+                                <fegaussianblur stdDeviation="3.5" result="coloredBlur"></fegaussianblur>
+                                <femerge>
+                                    <femergenode in="coloredBlur"></femergenode>
+                                    <femergenode in="SourceGraphic"></femergenode>
+                                </femerge>
+                            </filter>
+                        </svg>
+                        <div class="light-path-exits">
+                            <div class="light-path-exit exit-a">[A팀 선픽]</div>
+                            <div class="light-path-exit exit-b">[B팀 선픽]</div>
+                        </div>
+                    </div>
+                    <button id="btn-start-light" class="cta-button active small">선픽 결정!</button>
+                    <div id="light-path-result-text" class="pinball-result"></div>
+                </div>
+
+                <h2 id="draft-message" class="draft-message-center">드래프트 준비 중...</h2>
+
+                <div id="draft-board" class="draft-board simple-click-board">
+                    <div class="draft-columns">
+                        
+                        <div class="team-column team-a-column" id="team-a-column">
+                            <h3 id="team-a-name" class="team-header">[TEAM A]</h3>
+                            <div class="team-players" id="team-a-players">
+                                </div>
+                        </div>
+
+                        <div class="draft-pool-column">
+                            <h3>드래프트 풀 (<span id="draft-pool-count">8</span>)</h3>
+                            <div id="draftable-player-pool" class="player-pool scrollable click-to-pick-pool">
+                                </div>
+                        </div>
+                        
+                        <div class="team-column team-b-column" id="team-b-column">
+                             <h3 id="team-b-name" class="team-header">[TEAM B]</h3>
+                             <div class="team-players" id="team-b-players">
+                                </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="step-4-complete" class="draft-step">
+                 <h2>팀 구성 완료!</h2>
+                 <p class="draft-message-center" style="font-size: 16px;">
+                    완성된 두 팀의 정보를 밴픽 페이지로 전달합니다.
+                 </p>
+                 <div class="draft-board simple-click-board final-view">
+                     <div class="draft-columns">
+                         <div class="team-column team-a-column" id="final-team-a"></div>
+                         <div class="team-column team-b-column" id="final-team-b"></div>
+                     </div>
+                 </div>
+                 <div class="step-footer">
+                     <button id="btn-to-banpick" class="cta-button active">밴픽 페이지로 이동</button>
+                 </div>
+            </div>
+
+            <button id="btn-reset-draft" style="display: none; margin-top: 20px;">
+                처음부터 다시하기
+            </button>
+        </div>
+    </div>
+
+    <script src="team.js"></script>
+</body>
+</html>

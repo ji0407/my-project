@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BRO 내전 기록 - 밴픽</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body class="banpick-body">
+
+    <nav class="main-nav">
+        <a href="index.html" class="nav-link">리더보드</a>
+        <a href="team.html" class="nav-link">팀 짜기</a>
+        <a href="banpick.html" class="nav-link active">밴픽</a>
+    </nav>
+
+    <div class="banpick-container">
+        <div class="banpick-top">
+            <div class="bans blue-bans">
+                <div class="ban-slot" id="ban-b1"></div>
+                <div class="ban-slot" id="ban-b2"></div>
+                <div class="ban-slot" id="ban-b3"></div>
+                <div class="ban-slot" id="ban-b4"></div>
+                <div class="ban-slot" id="ban-b5"></div>
+            </div>
+            <div class="center-info">
+                <div class="timer" id="timer">30</div>
+                <div class="phase-message" id="phase-message">밴픽 준비 중...</div>
+            </div>
+            <div class="bans red-bans">
+                <div class="ban-slot" id="ban-r1"></div>
+                <div class="ban-slot" id="ban-r2"></div>
+                <div class="ban-slot" id="ban-r3"></div>
+                <div class="ban-slot" id="ban-r4"></div>
+                <div class="ban-slot" id="ban-r5"></div>
+            </div>
+        </div>
+
+        <div class="banpick-middle">
+            <div class="picks blue-picks">
+                <div class="pick-slot" id="pick-b1"><div class="pick-placeholder">B1</div></div>
+                <div class="pick-slot" id="pick-b2"><div class="pick-placeholder">B2</div></div>
+                <div class="pick-slot" id="pick-b3"><div class="pick-placeholder">B3</div></div>
+                <div class="pick-slot" id="pick-b4"><div class="pick-placeholder">B4</div></div>
+                <div class="pick-slot" id="pick-b5"><div class="pick-placeholder">B5</div></div>
+            </div>
+            <div class="champion-grid-container">
+                <input type="text" id="champion-search" placeholder="챔피언 검색 (초성 가능)">
+                <div class="champion-grid" id="champion-grid">
+                    <div class="loading">챔피언 목록 로딩 중...</div>
+                </div>
+                <div class="action-buttons">
+                    <button id="ban-button" class="bp-button ban-btn" disabled>밴 확정</button>
+                    <button id="pick-button" class="bp-button pick-btn" disabled>픽 확정</button>
+                </div>
+            </div>
+            <div class="picks red-picks">
+                <div class="pick-slot" id="pick-r1"><div class="pick-placeholder">R1</div></div>
+                <div class="pick-slot" id="pick-r2"><div class="pick-placeholder">R2</div></div>
+                <div class="pick-slot" id="pick-r3"><div class="pick-placeholder">R3</div></div>
+                <div class="pick-slot" id="pick-r4"><div class="pick-placeholder">R4</div></div>
+                <div class="pick-slot" id="pick-r5"><div class="pick-placeholder">R5</div></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="banpick.js"></script>
+</body>
+</html>

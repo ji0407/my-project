@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BRO 내전 기록 - 리더보드</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <nav class="main-nav">
+        <a href="index.html" class="nav-link active">리더보드</a>
+        <a href="team.html" class="nav-link">팀 짜기</a>
+        <a href="banpick.html" class="nav-link">밴픽</a>
+    </nav>
+
+    <div class="container">
+        <h1>BRO LEADERBOARD</h1>
+        
+        <table id="leaderboard-table">
+            <thead>
+                <tr>
+                    <th data-sort="rank">순위</th>
+                    <th data-sort="accountName" class="sortable active-sort">계정 명 ▴</th>
+                    <th data-sort="tier" class="sortable">티어</th>
+                    <th data-sort="totalGames" class="sortable">총 전적</th>
+                    <th data-sort="wins" class="sortable">승 / 패</th>
+                    <th data-sort="winRate" class="sortable">승률</th>
+                </tr>
+            </thead>
+            <tbody id="leaderboard-body">
+                <tr>
+                    <td colspan="6" class="loading">데이터를 불러오는 중입니다...</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
